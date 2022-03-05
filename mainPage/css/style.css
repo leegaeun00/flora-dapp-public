@@ -1,0 +1,348 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,700");
+
+body {
+  margin: 0;
+  font-family: 'Raleway';
+  overflow: hidden;
+  background-color: #2a2a2a;
+}
+
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row;
+  color: #fff;
+  position: relative;
+  font-size: 250%;
+  overflow: hidden;
+}
+
+#page-1 .text {
+  /* background: url('../img/p1.png') no-repeat center;
+  background-color: rgb(8, 107, 172); */
+  background: url('../img/main1.jpg') no-repeat center;
+  background-size: cover;
+}
+#page-2 .text {
+  background: url('../img/nature3.png') no-repeat center;
+  background-size: cover;
+}
+#page-3 .text {
+  background: url('../img/nature4.png') no-repeat center;
+  background-size: cover;
+}
+#page-4 .text {
+  background: url('../img/nature2.png') no-repeat center;
+  background-size: cover;
+}
+#page-5 .text {
+  background: url('../img/nature5.png') no-repeat center;
+  background-size: cover;
+}
+#page-6 .text, #page-6-clone .text {
+  background-color: #2e9cca;
+}
+
+gradientText1 {
+  animation: flow 15s ease-in-out infinite;
+  background: linear-gradient(-60deg,#64b3f4,#c2e59c);
+  background-size: 300%;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+gradientText2 {
+  animation: flow 15s ease-in-out infinite;
+  background: linear-gradient(-60deg,#c2e59c,#64b3f4);
+  background-size: 300%;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradientUnderline1 {
+  animation: flow 15s ease-in infinite;
+  background-image: linear-gradient(-60deg,#c2e59c,#64b3f4);
+  background-repeat: no-repeat;
+  background-size: 200% 80%;
+  background-position: 0 88%;
+  transition: background-size 0.25s ease-in;
+}
+
+.gradientUnderline1:hover {
+  background-size: 200% 120%;
+}
+
+.gradientUnderline2 {
+  animation: underlineGradient2 15s ease-in infinite;
+  background-image: linear-gradient(-60deg,#c2e59c,#64b3f4);
+  background-repeat: no-repeat;
+  background-size: 200% 30%;
+  background-position: 0 88%;
+}
+
+@keyframes underlineGradient2 {
+  0%{
+    transform: translate3d(0%, 0%, 0);
+  }
+  100%{
+    transform: translate3d(-75%, 0%, 0);
+  }
+}
+
+/*gradientText3 {*/
+/*  background: url('../img/gradient3.jpg');*/
+/*  -webkit-background-clip: text;*/
+/*  -webkit-text-fill-color: transparent;*/
+/*}*/
+
+/*gradientText4 {*/
+/*  background: url('../img/gradient4.jpg');*/
+/*  -webkit-background-clip: text;*/
+/*  -webkit-text-fill-color: transparent;*/
+/*}*/
+
+/*gradientText5 {*/
+/*  background: url('../img/gradient5.jpg');*/
+/*  -webkit-background-clip: text;*/
+/*  -webkit-text-fill-color: transparent;*/
+/*}*/
+
+@keyframes flow {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+.menuBar {
+  position: fixed;
+  top:30px;
+  right:25px;
+  display: flex;
+  column-gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.menuBar > div.media img {
+  transition: transform .2s;
+}
+
+.menuBar > div.media:hover img {
+  position: static;
+  transform: scale(1.2);
+}
+
+.menuBar > div.service a{
+  font-size: 18px;
+  color: white;
+  text-decoration: none;
+  padding: 2px;
+}
+
+.menuBar > div.service a:hover {
+  font-size: 18px;
+  color: white;
+  text-decoration: underline 4px;
+  text-underline-offset: 14px;
+  text-decoration-color: white;
+  padding: 2px;
+}
+
+.menuBar > div.launchApp a{
+  text-decoration: none;
+  border-radius: 2px;
+  top: 0;
+  left: 0;
+  transition: all .15s linear 0s;
+  position: relative;
+  /*display: inline-block;*/
+  padding: 10px 15px;
+  background-color: white;
+  color: black;
+  box-shadow: -6px 6px 0 #99AE93;
+}
+
+.menuBar > div.launchApp a:hover {
+  top: 3px;
+  left: -3px;
+  box-shadow: -3px 3px 0 #99AE93;
+}
+
+.menuBar > div.launchApp a:hover:after {
+  top: 1px;
+  left: -2px;
+  width: 4px;
+  height: 4px;
+}
+
+.menuBar > div.launchApp a:hover:before {
+  bottom: -2px;
+  right: 1px;
+  width: 4px;
+  height: 4px;
+}
+
+.menuBar > div.launchApp a::after {
+   transition: all .15s linear 0s;
+   content: '';
+   position: absolute;
+   top: 2px;
+   left: -4px;
+   width: 8px;
+   height: 8px;
+   background-color: #99AE93;
+   transform: rotate(45deg);
+   z-index: -1;
+ }
+
+.menuBar > div.launchApp a::before {
+  transition: all .15s linear 0s;
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  background-color: #99AE93;
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
+.menuBar > div.launchApp a:active {
+  top: 6px;
+  left: -6px;
+  box-shadow: none;
+}
+
+.menuBar > div.launchApp a:active:before {
+  bottom: 1px;
+  right: 1px;
+}
+
+.menuBar > div.launchApp a:active:after {
+  top: 1px;
+  left: 1px;
+}
+
+.menuBar > div.language img {
+  transition: transform .2s;
+}
+
+.menuBar > div.language:hover img {
+  position: static;
+  transform: scale(1.15);
+}
+
+.menuBar > div.language span.tooltip{
+  visibility: hidden;
+  font-size:12px;
+  width: 120px;
+  box-shadow: -3px 3px 0 #99AE93;
+  background-color: white;
+  color: black;
+  text-align: center;
+  border-radius: 2px;
+  padding: 8px 5px;
+  position: fixed;
+  z-index: 1;
+  top: 80px;
+  right: 13px;
+}
+
+.menuBar > div.language span.tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  right: 10%;
+  margin-left: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent white transparent;
+}
+
+.menuBar > div.language:hover span.tooltip{
+  visibility: visible;
+}
+
+@keyframes scroll {
+  from {
+    -webkit-transform: translate3d(-50%, 0, 0);
+            transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    -webkit-transform: translate3d(-50%, 10px, 0);
+            transform: translate3d(-50%, 10px, 0);
+    opacity: 0;
+  }
+}
+
+.text {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  flex-flow: column;
+}
+
+@keyframes spin {
+  from {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+            transform: rotate3d(0, 0, 1, 0deg);
+  }
+  to {
+    -webkit-transform: rotate3d(0, 0, 1, 360deg);
+            transform: rotate3d(0, 0, 1, 360deg);
+  }
+}
+
+.progress {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: calc(100vw - 20px);
+  height: 5px;
+}
+.progress .bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: scale(0, 1);
+          transform: scale(0, 1);
+  -webkit-transform-origin: 0 0 0;
+          transform-origin: 0 0 0;
+  background-color: #fff;
+}
+
+.page-progress {
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  left: 10px;
+  top: 20px;
+}
+
+svg {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+circle {
+  stroke: #fff;
+  fill: transparent;
+  stroke-dasharray: 87.9645943005 87.9645943005;
+  stroke-dashoffset: 87.9645943005;
+}
