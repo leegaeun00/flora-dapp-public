@@ -2,9 +2,11 @@
     position: static;
     display: flex;
     flex-direction: row;
-    column-gap: 20px;
+    column-gap: 10px;
     justify-content: flex-end;
     align-items: center;
+    width: 1000px;
+    margin-right: 10px;
 }
 
 .service {
@@ -28,16 +30,15 @@
     justify-content: center;
 }
 
-.Accordion {
-    width: 800px;
-}
-
-.AccordionDetails {
+.EtfCard {
     position: static;
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    height: 200px;
+}
+
+
+.Accordion {
+    width: 1000px;
 }
 
 .ButtonDepositSelected {
@@ -50,16 +51,16 @@
 }
 
 .ButtonDepositNotSelected {
-    color: lightgrey;
+    color: #C9D3C5;
     cursor: pointer;
 }
 
 .ButtonDepositNotSelected:hover {
-    color: lightgrey;
+    color: #C9D3C5;
     font-weight: bold;
     text-decoration: underline 4px;
     text-underline-offset: 14px;
-    text-decoration-color: lightgrey;
+    text-decoration-color: #C9D3C5;
     cursor: pointer;
 }
 
@@ -73,25 +74,27 @@
 }
 
 .ButtonWithdrawNotSelected {
-    color: lightgrey;
+    color: #C9D3C5;
     cursor: pointer;
 }
 
 .ButtonWithdrawNotSelected:hover {
-    color: lightgrey;
+    color: #C9D3C5;
     font-weight: bold;
     text-decoration: underline 4px;
     text-underline-offset: 14px;
-    text-decoration-color: lightgrey;
+    text-decoration-color: #C9D3C5;
     cursor: pointer;
 }
 
 .ButtonClaimSelected {
     color: #99AE93;
     font-weight: bold;
-    text-decoration: underline 4px;
-    text-underline-offset: 14px;
-    text-decoration-color: #99AE93;
+    border-bottom:4px solid #99AE93;
+    width: 110px;
+    margin-top: 20px;
+    margin-left: 100px;
+    padding-bottom:14px;
 }
 
 .threeDButton{
@@ -174,4 +177,154 @@
 .threeDButton:active:after {
     top: 1px;
     left: 1px;
+}
+
+.threeDButtonDarker{
+    width: 100px;
+    font-weight: bold;
+    color: #C9D3C5;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #C9D3C5;
+    top: 0;
+    left: 0;
+    transition: all .15s linear 0s;
+    position: relative;
+    /*display: inline-block;*/
+    padding: 10px 15px;
+    background-color: white;
+    box-shadow: -5px 5px 0 #C9D3C5;
+    cursor: pointer;
+}
+
+.threeDButtonDarker:hover {
+    top: 3px;
+    left: -3px;
+    box-shadow: -3px 3px 0 #C9D3C5;
+}
+
+.threeDButtonDarker:hover:after {
+    top: 1px;
+    left: -2px;
+    width: 4px;
+    height: 4px;
+}
+
+.threeDButtonDarker:hover:before {
+    bottom: -2px;
+    right: 1px;
+    width: 4px;
+    height: 4px;
+}
+
+.threeDButtonDarker::after {
+    transition: all .15s linear 0s;
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: -4px;
+    width: 8px;
+    height: 8px;
+    background-color: #C9D3C5;
+    transform: rotate(45deg);
+    z-index: -1;
+}
+
+.threeDButtonDarker::before {
+    transition: all .15s linear 0s;
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    right: 2px;
+    width: 8px;
+    height: 8px;
+    background-color: #C9D3C5;
+    transform: rotate(45deg);
+    z-index: -1;
+}
+
+.threeDButtonDarker:active {
+    top: 6px;
+    left: -6px;
+    box-shadow: none;
+}
+
+.threeDButtonDarker:active:before {
+    bottom: 1px;
+    right: 1px;
+}
+
+.threeDButtonDarker:active:after {
+    top: 1px;
+    left: 1px;
+}
+
+.threeDButtonDisabled{
+    width: 100px;
+    font-weight: bold;
+    color:  #d8d8d8;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    border-style: solid;
+    border-color:  #d8d8d8;
+    top: 0;
+    left: 0;
+    transition: all .15s linear 0s;
+    position: relative;
+    /*display: inline-block;*/
+    padding: 10px 15px;
+    background-color: white;
+    box-shadow: -5px 5px 0  #d8d8d8;
+    cursor: pointer;
+}
+
+.saleProgressBar {
+    background-color: #d8d8d8;
+    border-radius: 2px;
+    height: 50px;
+    width: 420px;
+}
+
+.saleProgressBarFilling {
+    background: #99c199;
+    border-radius: 2px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    font-size: 12px;
+    height: 100%;
+    width: 0;
+    opacity: 0;
+    transition: 1s ease 0.3s;
+}
+
+/*.saleProgressBarFilling:after {*/
+/*    content:"";*/
+/*    position: absolute;*/
+/*    z-index: 1;*/
+/*    top: 50px;*/
+/*    bottom: 0;*/
+/*    left: 68%;*/
+/*    height: 40px;*/
+/*    border-left: 2px dotted #444;*/
+/*    margin-top: 500px;*/
+/*}*/
+
+.idoBox {
+    /*animation:,*/
+    background-image: linear-gradient(-60deg,#7cbbe6,#abd8b3);
+    border-radius:5px;
+    width:1300px;
+    height:1300px;
+}
+
+.idoLabel {
+    color: #99AE93;
+    font-weight: bold;
+    border-bottom:4px solid #99AE93;
+    padding-bottom:14px;
 }

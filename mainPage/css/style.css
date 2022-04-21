@@ -45,18 +45,23 @@ section {
   background-color: #2e9cca;
 }
 
+#page-7 .text, #page-7-clone .text {
+  background-color: #abd8b3;
+}
+
 gradientText1 {
-  animation: flow 15s ease-in-out infinite;
-  background: linear-gradient(-60deg,#64b3f4,#c2e59c);
+  animation: flow 30s ease-in-out infinite;
+  background: linear-gradient(-60deg,#7cbbe6,#abd8b3);
   background-size: 300%;
+  /*text-shadow: 1px 1px white;*/
 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 gradientText2 {
-  animation: flow 15s ease-in-out infinite;
-  background: linear-gradient(-60deg,#c2e59c,#64b3f4);
+  animation: flow 30s ease-in-out infinite;
+  background: linear-gradient(-60deg,#7cbbe6,#abd8b3);
   background-size: 300%;
 
   -webkit-background-clip: text;
@@ -65,7 +70,7 @@ gradientText2 {
 
 .gradientUnderline1 {
   animation: flow 15s ease-in infinite;
-  background-image: linear-gradient(-60deg,#c2e59c,#64b3f4);
+  background-image: linear-gradient(-60deg,#7cbbe6,#abd8b3);
   background-repeat: no-repeat;
   background-size: 200% 80%;
   background-position: 0 88%;
@@ -78,7 +83,7 @@ gradientText2 {
 
 .gradientUnderline2 {
   animation: underlineGradient2 15s ease-in infinite;
-  background-image: linear-gradient(-60deg,#c2e59c,#64b3f4);
+  background-image: linear-gradient(-60deg,#7cbbe6,#abd8b3);
   background-repeat: no-repeat;
   background-size: 200% 30%;
   background-position: 0 88%;
@@ -89,6 +94,126 @@ gradientText2 {
     transform: translate3d(0%, 0%, 0);
   }
   100%{
+    transform: translate3d(-75%, 0%, 0);
+  }
+}
+
+.gradientUnderline3 {
+  animation: flow 15s ease-in infinite;
+  background-image: linear-gradient(-60deg,#d2969b,#c1e3bc);
+  background-repeat: no-repeat;
+  background-size: 200% 80%;
+  background-position: 0 88%;
+  transition: background-size 0.25s ease-in;
+}
+
+.gradientUnderline3:hover {
+  background-size: 200% 120%;
+}
+
+.gradientUnderline4 {
+  animation: underlineGradient4 15s ease-in infinite;
+  background-image: linear-gradient(-60deg,#d2969b,#c1e3bc);
+  background-repeat: no-repeat;
+  background-size: 200% 30%;
+  background-position: 0 88%;
+}
+
+@keyframes underlineGradient4 {
+  0% {
+    transform: translate3d(0%, 0%, 0);
+  }
+  100% {
+    transform: translate3d(-75%, 0%, 0);
+  }
+}
+
+.gradientUnderline5 {
+  animation: flow 15s ease-in infinite;
+  background-image: linear-gradient(-60deg,#fae27b,#4682a8);
+  background-repeat: no-repeat;
+  background-size: 200% 80%;
+  background-position: 0 88%;
+  transition: background-size 0.25s ease-in;
+}
+
+.gradientUnderline5:hover {
+  background-size: 200% 120%;
+}
+
+.gradientUnderline6 {
+  animation: underlineGradient6 15s ease-in infinite;
+  background-image: linear-gradient(-60deg,#fae27b,#4682a8);
+  background-repeat: no-repeat;
+  background-size: 200% 30%;
+  background-position: 0 88%;
+}
+
+@keyframes underlineGradient6 {
+  0% {
+    transform: translate3d(0%, 0%, 0);
+  }
+  100% {
+    transform: translate3d(-75%, 0%, 0);
+  }
+}
+
+.gradientUnderline7 {
+  animation: flow 15s ease-in infinite;
+  background-image: linear-gradient(-60deg,#d4d3dc,#efefbb);
+  background-repeat: no-repeat;
+  background-size: 200% 80%;
+  background-position: 0 88%;
+  transition: background-size 0.25s ease-in;
+}
+
+.gradientUnderline7:hover {
+  background-size: 200% 120%;
+}
+
+.gradientUnderline8 {
+  animation: underlineGradient8 15s ease-in infinite;
+  background-image: linear-gradient(-60deg,#d4d3dc,#efefbb);
+  background-repeat: no-repeat;
+  background-size: 200% 30%;
+  background-position: 0 88%;
+}
+
+@keyframes underlineGradient8 {
+  0% {
+    transform: translate3d(0%, 0%, 0);
+  }
+  100% {
+    transform: translate3d(-75%, 0%, 0);
+  }
+}
+
+.gradientUnderline9 {
+  animation: flow 15s ease-in infinite;
+  background-image: linear-gradient(-60deg,#d0d7b5,#f9d29b);
+  background-repeat: no-repeat;
+  background-size: 200% 80%;
+  background-position: 0 88%;
+  transition: background-size 0.25s ease-in;
+}
+
+.gradientUnderline9:hover {
+  background-size: 200% 120%;
+}
+
+.gradientUnderline10 {
+  animation: underlineGradient10 15s ease-in infinite;
+  background-image: linear-gradient(-60deg,#d0d7b5,#f9d29b);
+  background-repeat: no-repeat;
+  background-size: 200% 30%;
+  background-position: 0 88%;
+}
+
+@keyframes underlineGradient10 {
+  0% {
+    transform: translate3d(0%, 0%, 0);
+  }
+  100% {
     transform: translate3d(-75%, 0%, 0);
   }
 }
@@ -345,4 +470,19 @@ circle {
   fill: transparent;
   stroke-dasharray: 87.9645943005 87.9645943005;
   stroke-dashoffset: 87.9645943005;
+}
+
+.donationboard {
+  font-family: 'Raleway';
+  margin-left: auto;
+  margin-right: auto;
+  font-size:50%;
+}
+
+.donationboard th {
+  border-bottom: 2px solid white;
+}
+
+.donationboard th, td{
+  padding:10px 50px 10px 50px;
 }

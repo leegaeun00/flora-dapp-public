@@ -5,7 +5,7 @@ import '../styles/style.css';
 
 import {StakingPoolInfo} from "./StakingPoolInfo.js";
 import {StakingDepositOrWithdraw} from "./StakingDepositOrWithdraw.js";
-import {StakingClaim} from "./StakingClaim.js";
+import {StakingClaimAca} from "./StakingClaimAca.js";
 
 export const StakingCard = (props) => {
     const poolItem=props.poolItem
@@ -14,18 +14,26 @@ export const StakingCard = (props) => {
     const expandIcon=props.expandIcon
 
     return(
-        <div className="StakingCard">
+        <div className="StakingCard" style={{display: 'flex', 'flex-direction': 'column', 'margin-left': '25%'}}>
             <Accordion className="Accordion" expanded={expanded}
             onChange={onChange}>
                 <AccordionSummary expandIcon={expandIcon}>
                     <StakingPoolInfo poolItem={poolItem}/>
                 </AccordionSummary>
                 <AccordionDetails className="AccordianDetails" style={{
-                    'display': 'flex', 'flex-direction': 'row', 'justify-content': 'center', 'height': '250px'}}>
+                    'display': 'flex', 'flex-direction': 'row', 'justify-content': 'center', 'height': '350px'}}>
                     <StakingDepositOrWithdraw style={{'margin-bottom': '20px'}} poolItem={poolItem}/>
-                    <StakingClaim poolItem={poolItem}/>
+                    {poolItem.category === 'lpWithAca' ?
+                        <div></div> : <StakingClaimAca poolItem={poolItem}/>
+                    }
                 </AccordionDetails>
             </Accordion>
+            {poolItem.lockup === '90 days' ?
+                <div style={{'margin-bottom': '30px'}}></div> : <div></div>
+            }
+            {poolItem.lockup === '0 days' ?
+                <div style={{'margin-bottom': '30px'}}></div> : <div></div>
+            }
         </div>
     )
 }

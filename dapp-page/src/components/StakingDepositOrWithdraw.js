@@ -7,6 +7,7 @@ import BigNumber from "bignumber.js";
 import Kip7Abi from '../abis/Kip7Abi.json';
 import AcaciaPoolAbi from '../abis/AcaciaPoolAbi.json';
 import {klaytn, caver} from "../caver.js";
+import InputAdornment from "@mui/material/InputAdornment";
 
 //NumberInputBox
 const NumberInput = styled(TextField) ({
@@ -26,16 +27,17 @@ const NumberInput = styled(TextField) ({
     },
     'margin-top': '10px',
     'margin-right': '20px',
-    'width': '265px'
+    'width': '380px'
 })
 
 export const StakingDepositOrWithdraw = (props) => {
     const [depositOrWithdraw, setDepositOrWithdraw] = useState('Deposit');
-    const [isApproved, setIsApproved] = useState(true);
+    const [isApproved, setIsApproved] = useState(false);
     const [tokenAmount, setTokenAmount] = useState();
     const [canWithdraw, setCanWithdraw] = useState(false);
-    const [poolBalance, setPoolBalance] = useState(0);
     const [walletBalance, setWalletBalance] = useState(0);
+    const [withdrawableLp, setWithdrawableLp] = useState(0);
+    const [floraBalance, setFloraBalance] = useState(0);
 
     const poolItem=props.poolItem;
     const poolAddress=poolItem.poolAddr;
@@ -72,69 +74,108 @@ export const StakingDepositOrWithdraw = (props) => {
 
     //DepositBox
     function DepositBox() {
-        if (isApproved) {
-            return (
-                <div style={{'display': 'flex', 'flex-direction': 'column', 'justify-content':'center'}}>
-                    <div style={{'margin-top': '15px'}}>Wallet Balance: {walletBalance} {poolItem.tokenLabel}</div>
-                    <NumberInput variant="outlined" value={tokenAmount} placeholder="0" onChange={(e)=>setTokenAmount(e.target.value)}/>
-                    <DepositButton/>
+        return (
+            <div style={{'display': 'flex', 'flex-direction': 'column', 'justify-content':'center'}}>
+                <div style={{'margin-top': '15px'}}>Wallet Balance: {Number(walletBalance).toFixed(3)} {poolItem.tokenLabel}</div>
+                <NumberInput variant="outlined" value={tokenAmount} onChange={(e)=>setTokenAmount(e.target.value)}
+                             InputProps={{ endAdornment: (<InputAdornment position="end">{poolItem.tokenLabel}</InputAdornment>)}}/>
+                <div style={{'display':'flex', 'flex-direction':'row', 'justify-content':'center', 'column-gap':'10px', 'margin-left':'10px', 'font-size':'15px'}}>
+                    <div className="threeDButtonDarker" onClick={()=> {setTokenAmount(walletBalance*0.25)}}
+                         style={{'margin-top': '8px','justify-content':'center','align-items':'center','height':'20px','width':'20px'}}>
+                        25%
+                    </div>
+                    <div className="threeDButtonDarker" onClick={()=> {setTokenAmount(walletBalance*0.5)}}
+                         style={{'margin-top': '8px','justify-content':'center','align-items':'center','height':'20px','width':'20px'}}>
+                        50%
+                    </div>
+                    <div className="threeDButtonDarker" onClick={()=> {setTokenAmount(walletBalance*0.75)}}
+                         style={{'margin-top': '8px', 'justify-content':'center','align-items':'center','height':'20px','width':'20px'}}>
+                        75%
+                    </div>
+                    <div className="threeDButtonDarker" onClick={()=> {setTokenAmount(walletBalance)}}
+                         style={{'margin-top': '8px', 'justify-content':'center','align-items':'center','height':'20px','width':'20px', "padding": "10px 20px 10px 10px"}}>
+                        MAX
+                    </div>
                 </div>
-            )
-        }
-        else {
-            return (
-                <div style={{'display': 'flex', 'flex-direction': 'column', 'justify-content': 'center'}}>
-                    <div style={{'margin-top': '15px'}}>Wallet Balance: {walletBalance} {poolItem.tokenLabel}</div>
-                    <NumberInput disabled variant="outlined" placeholder="0 (Click Approve first)"/>
-                    <ApproveButton/>
-                </div>
-            )
-        }
+                {isApproved ? <DepositButton/> : <ApproveButton/>}
+            </div>
+        )
     }
 
     //WithdrawBox
     function WithdrawBox() {
-        if (isApproved) {
-            return (
-                <div style={{'display': 'flex', 'flex-direction': 'column', 'justify-content': 'center'}}>
-                    <div style={{'margin-top': '15px'}}>Pool Balance: {poolBalance} {poolItem.tokenLabel}</div>
-                    <NumberInput variant="outlined" value={tokenAmount} placeholder="0" onChange ={(e)=>changeTokenAmount(e.target.value)}/>
-                    <WithdrawButton/>
+        return (
+            <div style={{'display': 'flex', 'flex-direction': 'column', 'justify-content':'center'}}>
+                <div style={{'margin-top': '15px'}}>Withdrawable Balance: {Number(withdrawableLp).toFixed(3)} {poolItem.profitLabel}</div>
+                {poolItem.category!=="onlyAca" ? <div style={{'margin-top': '5px'}}>Flora LP Balance: {Number(floraBalance).toFixed(3)} Flora {poolItem.tokenLabel} LP</div> : <div></div>}
+                {poolItem.category!=="onlyAca" ?
+                    <NumberInput variant="outlined" value={tokenAmount} onChange={(e)=>setTokenAmount(e.target.value)}
+                             InputProps={{ endAdornment: (<InputAdornment position="end">Flora LP</InputAdornment>)}}/>
+                    :
+                    <NumberInput variant="outlined" value={tokenAmount} onChange={(e)=>setTokenAmount(e.target.value)}
+                             InputProps={{ endAdornment: (<InputAdornment position="end">ACA</InputAdornment>)}}/>
+                }
+                <div style={{'display':'flex', 'flex-direction':'row', 'justify-content':'center','column-gap':'10px', 'margin-left':'10px', 'font-size':'15px'}}>
+                    <div className="threeDButtonDarker" onClick={()=> {setTokenAmount(floraBalance*0.25)}}
+                         style={{'margin-top': '8px','justify-content':'center','align-items':'center','height':'20px','width':'20px'}}>
+                        25%
+                    </div>
+                    <div className="threeDButtonDarker" onClick={()=> {setTokenAmount(floraBalance*0.5)}}
+                         style={{'margin-top': '8px','justify-content':'center','align-items':'center','height':'20px','width':'20px'}}>
+                        50%
+                    </div>
+                    <div className="threeDButtonDarker" onClick={()=> {setTokenAmount(floraBalance*0.75)}}
+                         style={{'margin-top': '8px', 'justify-content':'center','align-items':'center','height':'20px','width':'20px'}}>
+                        75%
+                    </div>
+                    <div className="threeDButtonDarker" onClick={()=> {setTokenAmount(floraBalance)}}
+                         style={{'margin-top': '8px', 'justify-content':'center','align-items':'center','height':'20px','width':'20px', "padding": "10px 20px 10px 10px"}}>
+                        MAX
+                    </div>
                 </div>
-            )
-        }
-        else {
-            return (
-                <div style={{'display': 'flex', 'flex-direction': 'column', 'justify-content': 'center'}}>
-                    <div style={{'margin-top': '15px'}}>Pool Balance: {poolBalance} {poolItem.tokenLabel}</div>
-                    <NumberInput disabled variant="outlined" placeholder="0 (Click Approve first)"/>
-                    <ApproveButton/>
-                </div>
-            )
-        }
+                {isApproved ? <WithdrawButton/> : <ApproveButton/>}
+            </div>
+        )
     }
 
     useEffect(()=>{
         const getData = async() => {
-            const canWithdraw = await poolInstance.methods.canWithdraw(userWalletAddress).call();
-            setCanWithdraw(canWithdraw);
-            const poolBalance = shiftdown(BigNumber(await poolInstance.methods.balanceOf(userWalletAddress).call()), -18);
-            setPoolBalance(poolBalance);
             const walletBalance = shiftdown(BigNumber(await tokenInstance.methods.balanceOf(userWalletAddress).call()), -18);
             setWalletBalance(walletBalance);
+
+            var canWithdraw = await poolInstance.methods.canWithdraw(userWalletAddress).call();
+            setCanWithdraw(canWithdraw);
+
+            var withdrawableLp=0
+            if (poolItem.category === "lpWithAca" || poolItem.category === "lpWithoutAca") {
+                withdrawableLp = shiftdown(BigNumber(await poolInstance.methods.lpReward(userWalletAddress).call()), -18)
+            }
+            await setWithdrawableLp(withdrawableLp);
+
+            var floraBalance=0
+            if (poolItem.category === "lpWithAca" || poolItem.category === "lpWithoutAca") {
+                floraBalance = shiftdown(BigNumber(await poolInstance.methods.balanceOfUser(userWalletAddress).call()), -18)
+            }
+            await setFloraBalance(floraBalance);
+
+            var isApproved=false
+            var currentAllowance = await tokenInstance.methods.allowance(userWalletAddress, poolAddress).call();
+            // console.log("currentAllowance", currentAllowance, typeof(currentAllowance));
+            if (currentAllowance < "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff") {
+                isApproved=false
+            } else {
+                isApproved=true
+            }
+            await setIsApproved(isApproved)
+
         }
         getData();
     })
 
-
-    const changeTokenAmount = async(newTokenAmount) => {
-        await setTokenAmount(newTokenAmount);
-    }
-
     //DepositButton
     function DepositButton() {
         return (
-            <div className="threeDButton" onClick={deposit} style={{'margin-top': '20px', 'margin-left': '75px'}}>
+            <div className="threeDButton" onClick={deposit} style={{'margin-top': '20px', 'margin-left': '135px'}}>
                 Deposit
             </div>
         )
@@ -143,16 +184,16 @@ export const StakingDepositOrWithdraw = (props) => {
     //DepositButton
     function WithdrawButton() {
         return (
-            <div className="threeDButton" onClick={withdraw} style={{'margin-top': '20px', 'margin-left': '75px'}}>
+            <div className="threeDButton" onClick={withdraw} style={{'margin-top': '20px', 'margin-left': '135px'}}>
                 Withdraw
             </div>
         )
     }
 
-    //ApproveButton
+    // ApproveButton -> combine approve with deposit and withdraw buttons
     function ApproveButton() {
         return (
-            <div className="threeDButton" onClick={approve} style={{'margin-top': '20px', 'margin-left': '75px'}}>
+            <div className="threeDButton" onClick={approve} style={{'margin-top': '20px', 'margin-left': '135px'}}>
                 Approve
             </div>
         )
@@ -160,6 +201,9 @@ export const StakingDepositOrWithdraw = (props) => {
 
     //deposit
     const deposit = async() => {
+        if (isApproved === false){
+            await approve();
+        }
         const tokenAmountBigNumber = shiftup(BigNumber(tokenAmount), 18);
         await poolInstance.methods._stake(tokenAmountBigNumber).send({from: userWalletAddress, gas: 1000000}, function(error, transactionHash){
             if(error) return error;
@@ -169,8 +213,11 @@ export const StakingDepositOrWithdraw = (props) => {
 
     //withdraw
     const withdraw = async() => {
-        if (await canWithdraw()==false || await poolBalance() < tokenAmount){
-
+        if (isApproved === false){
+            await approve();
+        }
+        if (await canWithdraw() === false || floraBalance < tokenAmount){
+            return -1;
         }
         const tokenAmountBigNumber = shiftup(BigNumber(tokenAmount), 18);
         await poolInstance.methods._stake(tokenAmountBigNumber).send({from: userWalletAddress, gas: 1000000}, function(error, transactionHash){
@@ -179,18 +226,13 @@ export const StakingDepositOrWithdraw = (props) => {
         });
     }
 
-    //approve
+    // approve
     const approve = async() => {
-        const currentAllowance = await tokenInstance.methods.allowance(userWalletAddress, poolAddress).call();
-        console.log("currentAllowance", currentAllowance, typeof(currentAllowance));
-        if (currentAllowance < "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff") {
-            const largestAllowance = new BigNumber("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-            await tokenInstance.methods.approve(poolAddress, largestAllowance).send({
-                from: userWalletAddress,
-                gas: 1000000
-            });
-            setIsApproved(true);
-        }
+        const largestAllowance = new BigNumber("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        await tokenInstance.methods.approve(poolAddress, largestAllowance).send({
+            from: userWalletAddress,
+            gas: 1000000
+        });
     }
 
     // utility function

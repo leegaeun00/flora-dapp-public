@@ -172,7 +172,7 @@ export const LendingDepositOrWithdraw = (props) => {
 
     //withdraw
     const withdraw = async () => {
-        if (await canWithdraw() == false || await poolBalance() < tokenAmount) {
+        if (await canWithdraw() === false || await poolBalance() < tokenAmount) {
 
         }
         const tokenAmountBigNumber = shiftup(BigNumber(tokenAmount), 18);

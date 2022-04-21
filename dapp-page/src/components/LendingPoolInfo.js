@@ -18,14 +18,14 @@ export const LendingPoolInfo = (props) => {
     const [rewardPerSec, setRewardPerSec] = useState(0);
     const [counter, setCounter] = useState(0);
 
+    const interval = setInterval(async () => {
+        await checkAPR();
+        setCounter((counter + 1) % 10);
+    }, 300000);
     //check APR every 5 minutes
     useEffect(() => {
-        const interval = setInterval(async () => {
-            await checkAPR();
-            setCounter((counter + 1) % 10);
-        }, 300000);
         return () => clearInterval(interval);
-    }, [counter]);
+    }, [counter, interval]);
 
     //check APR
     const checkAPR = async () => {
@@ -66,7 +66,7 @@ export const LendingPoolInfo = (props) => {
 
     return (
         <div style={{display: 'flex', 'flex-direction': 'row', 'column-gap': '30px', 'align-items': 'center'}}>
-            <img src={acaColorLogo} style={{width: '40px', margin: '10px', 'margin-left': '15px'}}/>
+            <img alt='acaColorLogo' src={acaColorLogo} style={{width: '40px', margin: '10px', 'margin-left': '15px'}}/>
             <div style={{display: 'flex', 'flex-direction': 'column', 'row-gap': '5px'}}>
                 <span style={{"font-weight": "bold"}}>{poolItem.tokenLabel}</span>
                 <div> TVL $1,000</div>

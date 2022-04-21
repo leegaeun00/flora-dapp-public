@@ -2,6 +2,11 @@
   {
     "inputs": [
       {
+        "internalType": "uint256",
+        "name": "lockup",
+        "type": "uint256"
+      },
+      {
         "internalType": "address",
         "name": "_aca",
         "type": "address"
@@ -10,6 +15,11 @@
         "internalType": "address",
         "name": "_BBfund",
         "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_acaReward",
+        "type": "uint256"
       }
     ],
     "stateMutability": "nonpayable",
@@ -233,19 +243,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "additionalPercentage",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "address",
@@ -298,27 +295,14 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "displayReward",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "address",
-        "name": "user_",
+        "name": "account",
         "type": "address"
       }
     ],
-    "name": "extraProfit",
+    "name": "earned",
     "outputs": [
       {
         "internalType": "uint256",
@@ -353,6 +337,32 @@
     "name": "giveUp",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "lastUpdateTime",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "lendableRatio",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -426,14 +436,34 @@
     "type": "function"
   },
   {
-    "inputs": [
+    "inputs": [],
+    "name": "rewardPerToken",
+    "outputs": [
       {
-        "internalType": "address",
-        "name": "user",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
-    "name": "rewardView",
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "rewardPerTokenStored",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "rewardRate",
     "outputs": [
       {
         "internalType": "uint256",
@@ -447,14 +477,20 @@
   {
     "inputs": [
       {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "rewards",
+    "outputs": [
+      {
         "internalType": "uint256",
-        "name": "_additionalPercentage",
+        "name": "",
         "type": "uint256"
       }
     ],
-    "name": "setAdditionalReward",
-    "outputs": [],
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -525,12 +561,38 @@
   {
     "inputs": [
       {
+        "internalType": "uint256",
+        "name": "_lendableRatio",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateLendableRatio",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "address",
-        "name": "user_",
+        "name": "user",
         "type": "address"
       }
     ],
-    "name": "update_RPS",
+    "name": "updateMyLendable",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "userRewardPerTokenPaid",
     "outputs": [
       {
         "internalType": "uint256",
@@ -558,21 +620,6 @@
       },
       {
         "internalType": "uint256",
-        "name": "rewardEarned",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "additionalReward",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "LatestRewardUpdate",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
         "name": "lendingAmount",
         "type": "uint256"
       },
@@ -580,10 +627,37 @@
         "internalType": "uint256",
         "name": "initLending",
         "type": "uint256"
-      },
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "viewAcaReward",
+    "outputs": [
       {
         "internalType": "uint256",
-        "name": "lendingStart",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "viewRemainInWallet",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
         "type": "uint256"
       }
     ],
